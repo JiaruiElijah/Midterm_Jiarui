@@ -1,233 +1,163 @@
-function setup(){
-  createCanvas (800,800);
-  background(128,79,79);
-  noStroke();
-  
-}
+// function setup() {
+//   createCanvas(400, 400);
+//   frameRate(15);
 
-function draw(){
-  // createCanvas(128,79,79);
-  let Peter;
-  Peter =  new Mushroom(1,1,1);
-  // Peter.drawDirt();
-  // Peter.drawMycelium();
-  // Peter.drawMushroom1();
-  // Peter.drawLight();
+//   // v = new Snow(width/2, 0);
+//   v1 = new Snow(0, -50, 5, 5, 20);//first snow
+//   v2 = new Snow(100, -300, 5, 5, 20);//second snow
+//   v3 = new Snow(200, -400, 5, 5, 20);//third snow
+//   v4 = new Snow(100, -50, 7, 10, 20);
   
-}
+// }
 
-class Mushroom{
-  // let x_;
-  // let y_;
- //  let speed;
-  Mushroom(x, y, s){ //constructor function
-    this.x_=x;
-    this.y_=y;
-    this.speed = s;
+// function draw() {
+//   // background('rgb(0,0,0)');
 
-  // function display(color s){
-  //    stroke(240,220,213);
-  //    strokeWeight(2);
-  //    fill(s);
-  //    ellipse(x_, y_, 40, 40);
-  //    ellipse(x_, y_+ 45, 60, 60);
-  //    ellipse(x_, y_ + 105, 80, 80);
+//   v1.update();
+//   v2.update();
+//   v3.update();
+//   // v4.update();
 
-  // }//function display
-/*
-  function drawDirt(){
-  beginShape();
-  fill(77,51,50);
-  noStroke();
-  vertex(0,300);
-  bezierVertex(0,300,229,150,550,425);
-  vertex(550,800);
-  vertex(0,800);
-  endShape();
-  
-  beginShape();
-  fill(77,51,50);
-  vertex(551,426);
-  vertex(800,501);
-  vertex(800,800);
-  vertex(400,800);
-  
-  endShape();
-  
-  beginShape();
-  fill(128,79,79);
-  stroke(77,51,50);
-  vertex(550,425);
-  bezierVertex(550,425,650,515,800,500);
-  endShape();
+//   // v4.display();
 
-}
-  function drawMycelium(){
+//   for(i = 0; i<5; i++){
+//   v1.display();
+//   v1.display2();
+//   v1.display3();
+//   v1.display4();
+
+//   v2.display();
+//   v2.display2();
+//   v2.display3();  
+//   v2.display4();
+
+//   v3.display();
+//   v3.display2();
+//   v3.display3();
+//   v3.display4();
+//   }
   
-  stroke(240,220,213);
-  strokeWeight(2);
   
-  //Mushroom1
-  line(230,265,218,320);
-  line(218,320,180,310);
-  line(218,320,170,340);
-  line(218,320,220,380);
-  line(170,340,185,360);
-  line(170,340,165,375);
-  line(220,380,200,395);
-  line(220,380,240,440);
-  line(220,380,250,405);
+// }
+
+class Snow{
   
-  //Mushroom2
-  line(83.5,376.5,100,400);
-  line(100,400,75,450);
-  line(100,400,125,415);
-  line(125,415,160,380);
-  line(125,415,140,435);
-  line(75,450,55,460);
-  line(75,450,105,510);
-  line(125,415,200,420);
+  constructor(x1, y1, sp, a, b){
+    this.acceleration = createVector(-2, sp);
+    this.velocity = createVector(0, 0);
+    this.position = createVector(x1, y1);
+    this.maxspeed = 8;
+    this.a = a;
+    this.b = b;
+    this.x2 = x1;
+    this.y2 = y1;
+
+  }
   
-  //Mushroom3
-  line(348,440,320,455);
-  line(348,440,400,470);
-  line(348,440,355,515);
-  line(320,455,280,445);
-  line(320,455,270,470);
-  line(400,470,520,460);
-  line(400,470,470,490);
-  line(400,470,430,550);
-  line(355,515,320,530);
-  line(355,515,335,580);
-  line(520,460,540,470);
-  line(520,460,560,440);
-  line(470,490,460,510);
-  line(470,490,490,520);
-  line(470,490,515,485);
-  line(430,550,420,565);
-  line(430,550,450,580);
-  line(490,520,487,543);
+  display() {
     
-}
+    noStroke();
+    fill(255,255,255,70);
+    let w = random(this.a,this.b);
+    let h = random(this.a,this.b);
+    rectMode(CENTER);
+    push();
+    translate(this.position.x,this.position.y);
+    rect(100,0,w,h);
+    rect(200,40,w,h);
+    rect(300,-50,w,h);
+    
+    pop();
+    if(this.position.y>550){
+      this.position.x = 0;
+      this.position.y = -50;
+      
+    }
 
-  function drawMushroom1(){
+  }
   
-  //undercap1B
-  beginShape();
-  fill(186,122,102);
-  noStroke();
-  vertex(130,140);
-  bezierVertex(130,140,170,160,205,167);
-  vertex(210,150);
-  endShape();
-  
-  beginShape();
-  vertex(260,160);
-  vertex(262,174);
-  bezierVertex(262,174,300,180,340,173);
-  endShape();
-  
-  //stem1
-  beginShape();
-  fill(181,125,110);
-  noStroke();
-  vertex(200,260);
-  bezierVertex(200,260,170,240,210,150);
-  vertex(260,160);
-  bezierVertex(260,160,275,230,260,269);
-  vertex(260,269);
-  endShape();
- 
-  //cap1
-  beginShape();
-  fill(122,64,68);
-  noStroke();
-  vertex(130,140);
-  bezierVertex(110,140,260,0,340,170);
-  vertex(340,173);
-  endShape();
- 
-  stroke(186,122,102);
-  strokeWeight(2);
-  line(132,140,338,173);
-  
-  //undercap1A
-  beginShape();
-  fill(186,122,102);
-  noStroke();
-  vertex(130,140);
-  bezierVertex(110,140,240,120,340,170);
-  vertex(340,173);
-  endShape();
+    display2() {
+    
+    noStroke();
+    fill(255,255,255,70);
+    let w = random(this.a,this.b);
+    let h = random(this.a,this.b);
+    rectMode(CENTER);
+    push();
+    translate(this.position.x-50,this.position.y-100);
+    rect(100,0,w,h);
+    rect(200,40,w,h);
+    rect(300,-50,w,h);
+    
+    pop();
+    if(this.position.y>550){
+      this.position.x = 0;
+      this.position.y = -50;
+      
+    }
 
-  //gill1A
-  fill(235,180,162);
-  noStroke();
-  curve(110,120,130,139,208,156,220,140);
- 
-  //gill1B
-  curve(120,140,170,157,207,158,220,140);
- 
-  //gill1C
-  stroke(235,180,162);
-  strokeWeight(1.5);
-  curve(162,128,165,136.5,212,155,225,158);
+  }
 
-  //gill1D
-  curve(210,130,200,137,215,155,220,160);
- 
-  //gill1E
-  curve(220,130,225,139,225,156,217,160);
+  display3() {
+    
+    noStroke();
+    fill(255,255,255,70);
+    let w = random(this.a,this.b);
+    let h = random(this.a,this.b);
+    rectMode(CENTER);
+    push();
+    translate(this.position.x+300,this.position.y-100);
+    rect(100,0,w,h);
+    rect(200,40,w,h);
+    rect(300,-50,w,h);
+    
+    pop();
+    if(this.position.y>550){
+      this.position.x = 0;
+      this.position.y = -50;
+      
+    }
 
-  //gill1F
-  curve(245,132,250,142.5,240,158,227,162);
-  
-  //gill1G
-  curve(265,140,275,147,255,160,245,165);
-  
-  //gill1H
-  curve(330,150,312,158,258,161,250,158);
-  
-  //gill1I
-  curve(360,160,340,172,260,163,250,150);
+  }
 
-  //gill1J
-  curve(240,150,262,168,300,175.5,330,170);
+  display4() {
+    
+    noStroke();
+    fill(255,255,255,70);
+    let w = random(this.a,this.b);
+    let h = random(this.a,this.b);
+    rectMode(CENTER);
+    push();
+    translate(this.position.x+250,this.position.y-160);
+    rect(100,0,w,h);
+    rect(200,40,w,h);
+    rect(210,-50,w,h);
+    
+    pop();
+    if(this.position.y>550){
+      this.position.x = 0;
+      this.position.y = -50;
+      
+    }
 
-}
-  function drawLight(){
+  }
+// Method to update location
+  update() {
+     
+    this.velocity.add(this.acceleration);
+    this.velocity.limit(this.maxspeed);
+
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+    
+    print(this.position);
+
+
+
+  }
   
-  noStroke();
-  fill(255,170,52,150);
-  ellipse(35,800,125,125);
+
+
   
-  fill(255,170,52,120);
-  ellipse(35,800,300,300);
-  
-  fill(255,170,52,80);
-  ellipse(35,800,575,575);
-  
-  fill(255,170,52,40);
-  ellipse(35,800,925,925);
-  
-  fill(255,170,52,10);
-  ellipse(35,800,1425,1425);
-  
-  fill(255,170,52,7);
-  ellipse(35,800,1950,1950);
   
 }
-
-
-*/
-
-}
-  }//class
-
-
-
-
-
-
-
-
