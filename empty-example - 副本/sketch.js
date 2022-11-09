@@ -1,5 +1,6 @@
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 800);
+
   x = 0;
   yuki = new Station();
   
@@ -9,19 +10,24 @@ function setup() {
   v1 = new Snow(0, -50, 5, 5, 20);//first snow
   v2 = new Snow(100, -300, 5, 5, 20);//second snow
   v3 = new Snow(200, -400, 5, 5, 20);//third snow
-  v4 = new Snow(100, -50, 7, 10, 20);
+  v4 = new Snow(100, -50, 7, 10, 20);//forth snow
   
   a1 = new Person(0, 160);
 
 
+  v5 = new Snow(0, 100, 5, 10, 10);//far snow
+  v6 = new Snow(0, 200, 10, 5, 10);//far snow2
 
 
 }
 
 function draw() {
-  background(220);
+
+  background(66,71,94);
   let mouse = createVector(mouseX, mouseY);
   ellipse(mouse.x, mouse.y, 50, 50);
+
+    scale(2);
 
   
   
@@ -74,9 +80,12 @@ function draw() {
   v1.update();
   v2.update();
   v3.update();
-  // v4.update();
-
-  // v4.display();
+  v4.update();
+  v5.update();
+  v6.update();
+  v4.display();
+  v5.display();
+  v6.display();
 
   for(i = 0; i<5; i++){
   v1.display();
@@ -95,8 +104,8 @@ function draw() {
   v3.display4();
   }
   
-  a1.seek(mouse); // passing in a vector object
-  a1.update();
+  // a1.seek(mouse); // passing in a vector object
+  // a1.update();
   a1.display();
 }
 
@@ -138,7 +147,7 @@ class Station{
   stroke(50,66,76);
   line(x+15,y,x+15,300);
   noStroke();
-  fill(133,23,25);
+  fill('rgb(97,41,25)');
   rect(x+5,205,15,20);
   fill(73,77,88);
   rect(x+10,212,5,5);
@@ -275,7 +284,7 @@ class Station{
   fill(255);
   // rect(0,220,400,10);
   
-  fill(79,128,3);
+  fill(19,58,3);
   stroke(255);
   rect(0,250,400,50);
   
@@ -312,14 +321,6 @@ class Station{
 
 }
 
-class People{
-  constructor(){}
-  
-  head(){
-    rect(200,200,40,40);
-  }
-  
-}
 
 
 class Snow{
@@ -460,6 +461,7 @@ class Person{
     this.velocity.limit(this.maxspeed);
 
     this.position.add(this.velocity);
+    this.position.y = 160 ;
     this.acceleration.mult(0);
 
 
@@ -468,7 +470,7 @@ class Person{
   display() {
   rectMode(CORNER);
   push();
-  translate(this.position.x,this.position.y);
+  translate(this.position.x+100,this.position.y);
   noStroke();
 
   fill(21,24,58);//body
@@ -479,10 +481,10 @@ class Person{
   
   
   
-  fill(144,54,59);//body2
+  fill(102,94,92);//body-scarf
   rect(5,60,25,5);
   rect(0,65,30,5);
-  fill(105,36,41);
+  fill(102,77,75);
   rect(20,70,5,10);
   rect(25,75,5,17.5);
   
@@ -534,10 +536,10 @@ class Person{
   }
 
 seek(target){
-  let desired = target.x - this.position.x;
+  let desired = target.x-250 - this.position.x;
 
   if(desired < 100) {
-    if(desired < 10){
+    if(desired < 50){
       this.velocity.x = 0;
     }
     let m = map(desired, 0, 100, 0, this.maxspeed);
@@ -546,10 +548,6 @@ seek(target){
     this.acceleration.x += this.maxspeed;
   }
 
-  // let steer = p5.Vector.sub(desired, this.velocity);
-  // steer.limit(this.maxForce);
-
-  // this.applyForce(steer);
 
   
 
