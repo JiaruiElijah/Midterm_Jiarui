@@ -12,28 +12,57 @@ function setup() {
   v3 = new Snow(200, -400, 5, 5, 20);//third snow
   v4 = new Snow(100, -50, 7, 10, 20);//forth snow
   
-  a1 = new Person(0, 160);
+  a1 = new Person(0, 160);//person
 
 
   v5 = new Snow(0, 100, 5, 10, 10);//far snow
   v6 = new Snow(0, 200, 10, 5, 10);//far snow2
+
+  // c1 = new Backcolor();
+  // c1.updateColor();
+  // c1.displayColor();
 
 
 }
 
 function draw() {
 
-  background(66,71,94);
+  let x1 = 66-mouseX/10;
+  let x2 = 71-mouseX/10;
+  let x3 = 94-mouseX/10;
+  if(x3 <= 50){
+    x3 = 50 ;
+    x2 = 20 ;
+    x1 = 10 ;
+  }
+  background(x1,x2,x3);//background color changed with mousemoving
+
+
+
   let mouse = createVector(mouseX, mouseY);
-  ellipse(mouse.x, mouse.y, 50, 50);
+  ellipse(mouse.x, mouse.y, 50, 50);//indicate the position of mouse
 
-    scale(2);
+  scale(2);
+
+  let x4 = 380;//big shadow on the right of screen
+  let y4 = 0;
+  for(j = 0;j<14;j++){
+    for(i = 0;i<15;i++){
+      fill(x1,x2+5,x3-10,40+mouseX/5);
+      rect(x4,y4,20,20);
+      x4-=20;
+
+    }
+    x4 = 400+j*20;
+    y4+=20;
+  }
+
 
   
   
   
   
-  
+  //start build station
   rectMode(CORNER);
 
   yuki.plants(170,230);
@@ -57,7 +86,7 @@ function draw() {
   yuki.newBlock(300);
   
   
-  fill(255);
+  fill(205-mouseX/20);
   noStroke();
   rect(0,293,400,10);//ground
   
@@ -68,14 +97,7 @@ function draw() {
   yuki.cluster4(100,300);
 
   
-  yuki.shadow(0, 50, 235, 50, 0, 275);
-  yuki.shadow(0,290,170,290,140,230);
-  yuki.shadow(230,165,230,80,150,85);
-  yuki.shadow2();
-  
-  // triangle(230,110,110,300,330,300,20);  
-  
-  
+
   
   v1.update();
   v2.update();
@@ -87,7 +109,14 @@ function draw() {
   v5.display();
   v6.display();
 
-  for(i = 0; i<5; i++){
+
+  
+
+
+
+
+
+  for(i = 0; i<5; i++){//snow display
   v1.display();
   v1.display2();
   v1.display3();
@@ -104,10 +133,20 @@ function draw() {
   v3.display4();
   }
   
-  // a1.seek(mouse); // passing in a vector object
-  // a1.update();
   a1.display();
+
+
+//draw shadow on the sketch that changed with mousemoving
+  yuki.shadow(0, 50, 235, 50, 0, 275);
+  yuki.shadow(0,290,170,290,140,230);
+  yuki.shadow(230,165,230,80,150,85);
+  yuki.shadow2();
+  
+  // triangle(230,110,110,300,330,300,20);  
+  yuki.shadow(0,400,400,250,400,400);
+
 }
+
 
 class Station{
   constructor(){
@@ -147,7 +186,7 @@ class Station{
   stroke(50,66,76);
   line(x+15,y,x+15,300);
   noStroke();
-  fill('rgb(97,41,25)');
+  fill(97,41,25,90-mouseX/10);
   rect(x+5,205,15,20);
   fill(73,77,88);
   rect(x+10,212,5,5);
@@ -201,7 +240,7 @@ class Station{
 
   shadow(a,b,c,d,e,f){
   noStroke();
-  fill(0,0,0,20);
+  fill(0,0,0,20+mouseX/50);
   triangle(a,b,c,d,e,f);
   
 }
@@ -213,8 +252,8 @@ class Station{
 }
 
   cluster1(x, y){
-  stroke(255);
-  fill(255);
+  stroke(200-mouseX/20);
+  fill(200-mouseX/20);
   rect(x,y,5,5);
   rect(x+5,y,10,10);
   rect(x+10,y+10,5,5);
@@ -222,8 +261,8 @@ class Station{
   
 }
   cluster2(x, y){
-  stroke(255);
-  fill(255);
+  stroke(200-mouseX/20);
+  fill(200-mouseX/20);
   rect(x,y,5,5);
   rect(x+5,y,7,7);
   rect(x+15,y,10,10);
@@ -236,8 +275,8 @@ class Station{
 }
 
   cluster3(x, y){
-  stroke(255);
-  fill(255);
+  stroke(200-mouseX/20);
+  fill(200-mouseX/20);
   rect(x,y,5,5);
   rect(x+5,y,7,7);
   rect(x+15,y,10,20);
@@ -250,8 +289,8 @@ class Station{
   
 }
   cluster4(x, y){
-  stroke(255);
-  fill(255);
+  stroke(200-mouseX/20);
+  fill(200-mouseX/20);
   rect(x-5,y,15,5);
   rect(x+5,y,7,7);
   rect(x,y,10,5);
@@ -261,8 +300,8 @@ class Station{
   
 }
   cluster5(x, y){
-  stroke(255);
-  fill(255);
+  stroke(200-mouseX/20);
+  fill(200-mouseX/20);
   rect(x,y,25,25,10);
   rect(x+5,y+10,27,27,10);
   rect(x-5,y+15,10,20,10);
@@ -270,8 +309,8 @@ class Station{
 }
 
   cluster6(x, y){
-  stroke(255);
-  fill(255);
+  stroke(200-mouseX/20);
+  fill(200-mouseX/20);
   rect(x+5,y+6,5,12,2);
   rect(x-5,y+18,16,10,10);
   rect(x-15,y+25,16,5,10);
@@ -284,8 +323,8 @@ class Station{
   fill(255);
   // rect(0,220,400,10);
   
-  fill(19,58,3);
-  stroke(255);
+  fill(19-mouseX/20,58-mouseX/30,3);
+  stroke(200-mouseX/20,70);
   rect(0,250,400,50);
   
   rect(250,240,30,20);
@@ -340,7 +379,7 @@ class Snow{
   display() {
     
     noStroke();
-    fill(255,255,255,70);
+    fill(200-mouseX/20,70);
     let w = random(this.a,this.b);
     let h = random(this.a,this.b);
     rectMode(CENTER);
@@ -362,7 +401,7 @@ class Snow{
     display2() {
     
     noStroke();
-    fill(255,255,255,70);
+    fill(200-mouseX/20,70);
     let w = random(this.a,this.b);
     let h = random(this.a,this.b);
     rectMode(CENTER);
@@ -384,7 +423,7 @@ class Snow{
   display3() {
     
     noStroke();
-    fill(255,255,255,70);
+    fill(200-mouseX/20,70);
     let w = random(this.a,this.b);
     let h = random(this.a,this.b);
     rectMode(CENTER);
@@ -406,7 +445,7 @@ class Snow{
   display4() {
     
     noStroke();
-    fill(255,255,255,70);
+    fill(200-mouseX/20,70);
     let w = random(this.a,this.b);
     let h = random(this.a,this.b);
     rectMode(CENTER);
@@ -473,7 +512,7 @@ class Person{
   translate(this.position.x+100,this.position.y);
   noStroke();
 
-  fill(21,24,58);//body
+  fill(21,24,58,200-mouseX/50);//body
   rect(0,70,30,45);
   // rect(170,260,60,60);
   rect(-5,90,36.5,25);
@@ -481,27 +520,27 @@ class Person{
   
   
   
-  fill(102,94,92);//body-scarf
+  fill(102,94,92,200-mouseX/50);//body-scarf
   rect(5,60,25,5);
   rect(0,65,30,5);
-  fill(102,77,75);
+  fill(102,77,75,200-mouseX/50);
   rect(20,70,5,10);
   rect(25,75,5,17.5);
   
   
   
-  fill(131,131,116);
+  fill(131,131,116,200-mouseX/50);
   rect(10,35,20,25);
   rect(5,25,26.5,15);//lian
   rect(0,35,5,15);
   rect(5,115,10,25);//leg
   rect(20,115,7.5,25);
   
-  fill(164,172,189)//sock
+  fill(164,172,189,200-mouseX/50)//sock
   rect(5,125,10,15);
   rect(20,125,7.5,15);
   
-  fill(15,18,52)//shoes
+  fill(15,18,52,200-mouseX/50)//shoes
   rect(20,140,7.5,5);
   rect(5,140,10,5);
   
@@ -511,7 +550,7 @@ class Person{
   
   
   
-  fill(23,27,59);
+  fill(23,27,59,200-mouseX/50);
   rect(20,25,15,15);//hair
   rect(10,20,20,10);
   rect(5,20,10,20);
@@ -563,3 +602,42 @@ seek(target){
 
 }
 
+
+// class Backcolor{
+
+
+//   constructor(){
+//     let hueValues = []; 
+//     let saturationValues = []; 
+//     let brightnessValues = [];
+
+//   }
+
+//   updateColor(){
+//     for (var i = 0; i < 800; i++) { 
+//       if (i % 2 == 0) {
+//         hueValues[i] = int(random(0, 360)); 
+//         saturationValues[i] = 100; 
+//         brightnessValues[i] = int(random(0, 100));  } 
+//       else { 
+//         hueValues[i] = 195; 
+//         saturationValues[i] = int(random(0, 100)); 
+//         brightnessValues[i] = 100;
+//       }
+
+
+//       }
+
+
+//   }
+
+//   displayColor(){
+//     fill(hueValues[1], saturationValues[1], brightnessValues[1]); 
+//     rect(0, 0, 200, 200);
+
+
+
+
+//   }
+
+// }
