@@ -512,7 +512,7 @@ class Person{
   translate(this.position.x+100,this.position.y);
   noStroke();
 
-  fill(21,24,58,200-mouseX/50);//body
+  fill(21,24,58,200-mouseX/30);//body
   rect(0,70,30,45);
   // rect(170,260,60,60);
   rect(-5,90,36.5,25);
@@ -520,27 +520,27 @@ class Person{
   
   
   
-  fill(102,94,92,200-mouseX/50);//body-scarf
+  fill(102,94,92,200-mouseX/30);//body-scarf
   rect(5,60,25,5);
   rect(0,65,30,5);
-  fill(102,77,75,200-mouseX/50);
+  fill(102,77,75,200-mouseX/30);
   rect(20,70,5,10);
   rect(25,75,5,17.5);
   
   
   
-  fill(131,131,116,200-mouseX/50);
+  fill(131,131,116,200-mouseX/30);
   rect(10,35,20,25);
   rect(5,25,26.5,15);//lian
   rect(0,35,5,15);
   rect(5,115,10,25);//leg
   rect(20,115,7.5,25);
   
-  fill(164,172,189,200-mouseX/50)//sock
+  fill(164,172,189,200-mouseX/40)//sock
   rect(5,125,10,15);
   rect(20,125,7.5,15);
   
-  fill(15,18,52,200-mouseX/50)//shoes
+  fill(15,18,52,200-mouseX/40)//shoes
   rect(20,140,7.5,5);
   rect(5,140,10,5);
   
